@@ -2,7 +2,7 @@
 
 namespace ByJG\WordNumber;
 
-class EnglishWordNumber extends Base
+class ItalianWordNumber extends Base
 {
 	public function concatWord()
 	{
