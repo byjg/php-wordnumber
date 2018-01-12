@@ -22,15 +22,15 @@ abstract class Base implements WordNumberInterface
 
         $integer = intval($number);
         $fration = round(($number - intval($number)) * 100, 0);
-        $parte1 = $this->process($integer);
-        $parte2 = $this->process($fration);
+        $part1 = $this->process($integer);
+        $part2 = $this->process($fration);
 
-        $result = $parte1;
-        if (!empty($parte1)) {
+        $result = $part1;
+        if (!empty($part1)) {
             $result .= ($integer == 1 ? $currency[0] : $currency[1]);
         }
-        if (!empty($parte2)) {
-            $result .= " " . $this->concatWord() . " " . $parte2 . ($fration == 1 ? $currency[2] : $currency[3]);
+        if (!empty($part2)) {
+            $result .= " " . $this->concatWord() . " " . $part2 . ($fration == 1 ? $currency[2] : $currency[3]);
         }
 
         return $result;
@@ -38,41 +38,41 @@ abstract class Base implements WordNumberInterface
 
     protected function process($number)
     {
-        $milharArray = $this->tens();
+        $thousandArray = $this->tens();
 
-        $numerosArray = [];
-        $numerosArray[0] = array_merge([""], $this->unit());
-        $numerosArray[1] = array_merge([""], [$this->elevenToNineteen()], $this->twentyToNinety());
-        $numerosArray[2] = array_merge([""], $this->hundreds());
+        $numbersArray = [];
+        $numbersArray[0] = array_merge([""], $this->unit());
+        $numbersArray[1] = array_merge([""], [$this->elevenToNineteen()], $this->twentyToNinety());
+        $numbersArray[2] = array_merge([""], $this->hundreds());
 
         $result = "";
 
-        $parte = $number % 1000;
-        $posicao = 0;
-        $result_milhar = "";
-        $posicao_preenchida = 0;
+        $thousand = $number % 1000;
+        $position = 0;
+        $resultTens = "";
+        $filledPosition = 0;
         while ($number > 0) {
-            $unidade = $parte % 10;
-            $dezena = intval(($parte % 100) / 10);
-            $centena = intval(($parte % 1000) / 100);
+            $unit = $thousand % 10;
+            $ten = intval(($thousand % 100) / 10);
+            $hundred = intval(($thousand % 1000) / 100);
 
-            if ($parte == 100) {
-                $result_milhar = $this->oneHundred();
+            if ($thousand == 100) {
+                $resultTens = $this->oneHundred();
             } else {
-                if ($dezena == 1) {
-                    $result_milhar = $numerosArray[1][1][$unidade];
+                if ($ten == 1) {
+                    $resultTens = $numbersArray[1][1][$unit];
                 } else {
-                    $result_milhar = $numerosArray[0][$unidade];
-                    $result_milhar = trim($numerosArray[1][$dezena] . ($result_milhar != "" ? " " : "") . $result_milhar);
+                    $resultTens = $numbersArray[0][$unit];
+                    $resultTens = trim($numbersArray[1][$ten] . ($resultTens != "" ? " " : "") . $resultTens);
                 }
-                $result_milhar = $numerosArray[2][$centena] . (($result_milhar != "") && ($numerosArray[2][$centena] != "") ? " " . $this->concatWord() . " " : "") . $result_milhar;
+                $resultTens = $numbersArray[2][$hundred] . (($resultTens != "") && ($numbersArray[2][$hundred] != "") ? " " . $this->concatWord() . " " : "") . $resultTens;
             }
-            $result = (($result_milhar != "") ? $result_milhar . " " . $milharArray[$posicao][($parte == 1) ? 1 : 2] . (($result_milhar != "") && ($result != "") ? $milharArray[$posicao_preenchida][0] : "") : "") . $result;
+            $result = (($resultTens != "") ? $resultTens . " " . $thousandArray[$position][($thousand == 1) ? 1 : 2] . (($resultTens != "") && ($result != "") ? $thousandArray[$filledPosition][0] : "") : "") . $result;
 
             $number = intval($number / 1000);
-            $parte = $number % 1000;
-            $posicao_preenchida = ($result_milhar != "") ? $posicao : $posicao_preenchida;
-            $posicao++;
+            $thousand = $number % 1000;
+            $filledPosition = ($resultTens != "") ? $position : $filledPosition;
+            $position++;
         }
 
         return $result;
