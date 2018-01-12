@@ -1,11 +1,14 @@
 # Wordnumber
 
+[![Build Status](https://travis-ci.org/byjg/wordnumber.svg?branch=master)](https://travis-ci.org/byjg/wordnumber)
+
 Write float number in a word number.
 
 Support multiple languages. Until this moment supports
 
  - English
  - Portuguese
+ - Italian (Thanks to [willypuzzle](https://github.com/willypuzzle))
 
 ## Examples
 
@@ -29,20 +32,20 @@ If you create feel free to send to us.
 ```php
 interface WordNumberInterface
 {
-	function concatWord();
+    public function concatWord();
 
-	function currency();
+    public function currency();
 
-	function tens();
+    public function tens();
 
-	function unit();
+    public function unit();
 
-	function elevenToNineteen();
+    public function elevenToNineteen();
 
-	function twentyToNinety();
+    public function twentyToNinety();
 
-	function hundreds();
+    public function hundreds();
 
-	function oneHundred();
+    public function oneHundred();
 }
 ```
