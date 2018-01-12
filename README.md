@@ -1,5 +1,7 @@
 # Wordnumber
 
+[![Build Status](https://travis-ci.org/byjg/wordnumber.svg?branch=master)](https://travis-ci.org/byjg/wordnumber)
+
 Write float number in a word number.
 
 Support multiple languages. Until this moment supports
