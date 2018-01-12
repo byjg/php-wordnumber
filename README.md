@@ -3,21 +3,22 @@
 Write float number in a word number.
 
 Support multiple languages. Until this moment supports
-* English
-* Portuguese
+
+ - English
+ - Portuguese
 
 ## Examples
 
 ```php
 $wordNumber = new \ByJG\WordNumber\EnglishWordNumber();
-$wordnumber->write(100);  # writes one hundred
+$wordnumber->write(12.34);  # writes twelve dollars and third four cents
 ```
 
 or
 
 ```php
 $wordNumber = new \ByJG\WordNumber\PortugueseWordNumber();
-$wordnumber->write(143);  # writes cento e quarenta três.
+$wordnumber->write(12.34);  # writes doze reais e trinta e quatro centavos.
 ```
 
 ## Create other languages

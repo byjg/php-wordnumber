@@ -4,19 +4,19 @@ namespace ByJG\WordNumber;
 
 interface WordNumberInterface
 {
-	function concatWord();
-	
-	function currency();
+    public function concatWord();
 
-	function tens();
+    public function currency();
 
-	function unit();
+    public function tens();
 
-	function elevenToNineteen();
+    public function unit();
 
-	function twentyToNinety();
+    public function elevenToNineteen();
 
-	function hundreds();
+    public function twentyToNinety();
 
-	function oneHundred();
+    public function hundreds();
+
+    public function oneHundred();
 }
