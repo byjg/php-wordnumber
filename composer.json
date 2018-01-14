@@ -7,7 +7,6 @@
       "email": "joao@byjg.com.br"
     }
   ],
-  "version": "1.0.0",
   "require": {},
   "autoload": {
     "psr-4": {
