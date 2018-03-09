@@ -2,16 +2,10 @@
 
 namespace Tests;
 
-use ByJG\WordNumber\EnglishWordNumber;
 use ByJG\WordNumber\ItalianWordNumber;
-use ByJG\WordNumber\PortugueseWordNumber;
+use PHPUnit\Framework\TestCase;
 
-// backward compatibility
-if (!class_exists('\PHPUnit\Framework\TestCase')) {
-    class_alias('\PHPUnit_Framework_TestCase', '\PHPUnit\Framework\TestCase');
-}
-
-class ItalianWordNumberTest extends \PHPUnit\Framework\TestCase
+class ItalianWordNumberTest extends TestCase
 {
     public function provider()
     {
