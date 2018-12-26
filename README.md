@@ -10,7 +10,7 @@ Support multiple languages. Until this moment supports
  - Portuguese
  - Italian (Thanks to [willypuzzle](https://github.com/willypuzzle))
 
-## Examples
+# Examples
 
 ```php
 $wordNumber = new \ByJG\WordNumber\EnglishWordNumber();
@@ -24,7 +24,7 @@ $wordNumber = new \ByJG\WordNumber\PortugueseWordNumber();
 $wordnumber->write(12.34);  # writes doze reais e trinta e quatro centavos.
 ```
 
-## Create other languages
+# Create other languages
 
 You have to implement the interface WordNumberInterface with the proper word number in your language.
 If you create feel free to send to us.
@@ -49,3 +49,4 @@ interface WordNumberInterface
     public function oneHundred();
 }
 ```
+
