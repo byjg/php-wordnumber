@@ -1,6 +1,10 @@
 # Wordnumber
 
-[![Build Status](https://travis-ci.org/byjg/wordnumber.svg?branch=master)](https://travis-ci.org/byjg/wordnumber)
+[![Build Status](https://github.com/byjg/wordnumber/actions/workflows/phpunit.yml/badge.svg?branch=master)](https://github.com/byjg/wordnumber/actions/workflows/phpunit.yml) 
+[![Opensource ByJG](https://img.shields.io/badge/opensource-byjg-success.svg)](http://opensource.byjg.com) 
+[![GitHub source](https://img.shields.io/badge/Github-source-informational?logo=github)](https://github.com/byjg/wordnumber/) 
+[![GitHub license](https://img.shields.io/github/license/byjg/wordnumber.svg)](https://opensource.byjg.com/opensource/licensing.html) 
+[![GitHub release](https://img.shields.io/github/release/byjg/wordnumber.svg)](https://github.com/byjg/wordnumber/releases/)
 
 Write float number in a word number.
 
@@ -50,3 +54,12 @@ interface WordNumberInterface
 }
 ```
 
+## Dependencies
+
+```mermaid  
+flowchart TD  
+    byjg/wordnumber
+```
+
+----  
+[Open source ByJG](http://opensource.byjg.com)
