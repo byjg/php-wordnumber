@@ -58,7 +58,7 @@ interface WordNumberInterface
 
 ```mermaid  
 flowchart TD  
-    byjg/php-wordnumber
+    byjg/wordnumber
 ```
 
 ----  
