@@ -2,7 +2,7 @@
   "name": "byjg/wordnumber",
   "description": "Write float number in a word number.",
   "require": {
-    "php": ">=7.4.0"
+    "php": ">=7.4"
   },
   "autoload": {
     "psr-4": {
