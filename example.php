@@ -2,7 +2,7 @@
 
 require "vendor/autoload.php";
 
-$wordNumber = new \ByJG\WordNumber\EnglishWordNumber();
+$wordNumber = new ByJG\EnglishWordNumber();
 
 for ($i = 0; $i<101; $i++) {
     echo "[" . $i . ", '" . $wordNumber->write($i) . "'],\n";
