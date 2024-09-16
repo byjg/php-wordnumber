@@ -4,17 +4,17 @@ namespace ByJG\WordNumber;
 
 class EnglishWordNumber extends Base
 {
-    public function concatWord()
+    public function concatWord(): string
     {
         return "and";
     }
 
-    public function currency()
+    public function currency(): array
     {
         return ["dollar", "dollars", "cent", "cents"];
     }
 
-    public function unit()
+    public function unit(): array
     {
         return [
             "one",
@@ -29,7 +29,7 @@ class EnglishWordNumber extends Base
         ];
     }
 
-    public function elevenToNineteen()
+    public function elevenToNineteen(): array
     {
         return [
             "ten",
@@ -45,7 +45,7 @@ class EnglishWordNumber extends Base
         ];
     }
 
-    public function twentyToNinety()
+    public function twentyToNinety(): array
     {
         return [
             "twenty",
@@ -59,12 +59,12 @@ class EnglishWordNumber extends Base
         ];
     }
 
-    public function oneHundred()
+    public function oneHundred(): string
     {
         return "one hundred";
     }
 
-    public function hundreds()
+    public function hundreds(): array
     {
         return [
             "one hundred",
@@ -79,7 +79,7 @@ class EnglishWordNumber extends Base
         ];
     }
 
-    public function tens()
+    public function tens(): array
     {
         return [
             [" and ", "", ""],
