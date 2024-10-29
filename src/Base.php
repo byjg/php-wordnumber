@@ -9,10 +9,10 @@ abstract class Base implements WordNumberInterface
      * Write a currency Word number.
      * This params receives an integer that represents two decimal points.
      *
-     * @param $number
+     * @param float $number
      * @return string
      */
-    public function write($number)
+    public function write(float $number): string
     {
         $currency = $this->currency();
 
@@ -36,7 +36,7 @@ abstract class Base implements WordNumberInterface
         return $result;
     }
 
-    protected function process($number)
+    protected function process(float $number): string
     {
         $thousandArray = $this->tens();
 
@@ -67,7 +67,7 @@ abstract class Base implements WordNumberInterface
                 }
                 $resultTens = $numbersArray[2][$hundred] . (($resultTens != "") && ($numbersArray[2][$hundred] != "") ? " " . $this->concatWord() . " " : "") . $resultTens;
             }
-            $result = (($resultTens != "") ? $resultTens . " " . $thousandArray[$position][($thousand == 1) ? 1 : 2] . (($resultTens != "") && ($result != "") ? $thousandArray[$filledPosition][0] : "") : "") . $result;
+            $result = (($resultTens != "") ? $resultTens . " " . $thousandArray[$position][($thousand == 1) ? 1 : 2] . (!empty($resultTens) && !empty($result) ? $thousandArray[$filledPosition][0] : "") : "") . $result;
 
             $number = intval($number / 1000);
             $thousand = $number % 1000;

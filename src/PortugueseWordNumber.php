@@ -4,17 +4,17 @@ namespace ByJG\WordNumber;
 
 class PortugueseWordNumber extends Base
 {
-    public function concatWord()
+    public function concatWord(): string
     {
         return "e";
     }
 
-    public function currency()
+    public function currency(): array
     {
         return ["real", "reais", "centavo", "centavos"];
     }
 
-    public function unit()
+    public function unit(): array
     {
         return [
             "um",
@@ -29,7 +29,7 @@ class PortugueseWordNumber extends Base
         ];
     }
 
-    public function elevenToNineteen()
+    public function elevenToNineteen(): array
     {
         return [
             "dez",
@@ -45,7 +45,7 @@ class PortugueseWordNumber extends Base
         ];
     }
 
-    public function twentyToNinety()
+    public function twentyToNinety(): array
     {
         return [
             "vinte",
@@ -59,12 +59,12 @@ class PortugueseWordNumber extends Base
         ];
     }
 
-    public function oneHundred()
+    public function oneHundred(): string
     {
         return "cem";
     }
 
-    public function hundreds()
+    public function hundreds(): array
     {
         return [
             "cento",
@@ -79,7 +79,7 @@ class PortugueseWordNumber extends Base
         ];
     }
 
-    public function tens()
+    public function tens(): array
     {
         return [
             [" e ", "", ""],

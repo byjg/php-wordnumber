@@ -17,14 +17,14 @@ Support multiple languages. Until this moment supports
 # Examples
 
 ```php
-$wordNumber = new \ByJG\WordNumber\EnglishWordNumber();
+$wordNumber = new ByJG\WordNumber\EnglishWordNumber();
 $wordnumber->write(12.34);  # writes twelve dollars and third four cents
 ```
 
 or
 
 ```php
-$wordNumber = new \ByJG\WordNumber\PortugueseWordNumber();
+$wordNumber = new ByJG\WordNumber\PortugueseWordNumber();
 $wordnumber->write(12.34);  # writes doze reais e trinta e quatro centavos.
 ```
 

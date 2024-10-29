@@ -4,17 +4,17 @@ namespace ByJG\WordNumber;
 
 class ItalianWordNumber extends Base
 {
-    public function concatWord()
+    public function concatWord(): string
     {
         return "e";
     }
 
-    public function currency()
+    public function currency(): array
     {
         return ["euro", "euro", "centesimo", "centesimi"];
     }
 
-    public function unit()
+    public function unit(): array
     {
         return [
             "uno",
@@ -29,7 +29,7 @@ class ItalianWordNumber extends Base
         ];
     }
 
-    public function elevenToNineteen()
+    public function elevenToNineteen(): array
     {
         return [
             "dieci",
@@ -45,7 +45,7 @@ class ItalianWordNumber extends Base
         ];
     }
 
-    public function twentyToNinety()
+    public function twentyToNinety(): array
     {
         return [
             "venti",
@@ -59,12 +59,12 @@ class ItalianWordNumber extends Base
         ];
     }
 
-    public function oneHundred()
+    public function oneHundred(): string
     {
         return "cento";
     }
 
-    public function hundreds()
+    public function hundreds(): array
     {
         return [
             "mille",
@@ -79,7 +79,7 @@ class ItalianWordNumber extends Base
         ];
     }
 
-    public function tens()
+    public function tens(): array
     {
         return [
             [" e ", "", ""],
