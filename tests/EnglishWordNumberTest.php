@@ -3,11 +3,17 @@
 namespace Tests;
 
 use ByJG\WordNumber\EnglishWordNumber;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class EnglishWordNumberTest extends TestCase
 {
-    public function provider()
+    /**
+     * @return (float|int|string)[][]
+     *
+     * @psalm-return list{list{0, 'zero dollars'}, list{1, 'one dollar'}, list{2, 'two dollars'}, list{3, 'three dollars'}, list{4, 'four dollars'}, list{5, 'five dollars'}, list{6, 'six dollars'}, list{7, 'seven dollars'}, list{8, 'eight dollars'}, list{9, 'nine dollars'}, list{10, 'ten dollars'}, list{11, 'eleven dollars'}, list{12, 'twelve dollars'}, list{13, 'thirteen dollars'}, list{14, 'fourteen dollars'}, list{15, 'fifteen dollars'}, list{16, 'sixteen dollars'}, list{17, 'seventeen dollars'}, list{18, 'eighteen dollars'}, list{19, 'nineteen dollars'}, list{20, 'twenty dollars'}, list{21, 'twenty one dollars'}, list{22, 'twenty two dollars'}, list{23, 'twenty three dollars'}, list{24, 'twenty four dollars'}, list{25, 'twenty five dollars'}, list{26, 'twenty six dollars'}, list{27, 'twenty seven dollars'}, list{28, 'twenty eight dollars'}, list{29, 'twenty nine dollars'}, list{30, 'thirty dollars'}, list{31, 'thirty one dollars'}, list{32, 'thirty two dollars'}, list{33, 'thirty three dollars'}, list{34, 'thirty four dollars'}, list{35, 'thirty five dollars'}, list{36, 'thirty six dollars'}, list{37, 'thirty seven dollars'}, list{38, 'thirty eight dollars'}, list{39, 'thirty nine dollars'}, list{40, 'fourty dollars'}, list{41, 'fourty one dollars'}, list{42, 'fourty two dollars'}, list{43, 'fourty three dollars'}, list{44, 'fourty four dollars'}, list{45, 'fourty five dollars'}, list{46, 'fourty six dollars'}, list{47, 'fourty seven dollars'}, list{48, 'fourty eight dollars'}, list{49, 'fourty nine dollars'}, list{50, 'fifty dollars'}, list{51, 'fifty one dollars'}, list{52, 'fifty two dollars'}, list{53, 'fifty three dollars'}, list{54, 'fifty four dollars'}, list{55, 'fifty five dollars'}, list{56, 'fifty six dollars'}, list{57, 'fifty seven dollars'}, list{58, 'fifty eight dollars'}, list{59, 'fifty nine dollars'}, list{60, 'sixty dollars'}, list{61, 'sixty one dollars'}, list{62, 'sixty two dollars'}, list{63, 'sixty three dollars'}, list{64, 'sixty four dollars'}, list{65, 'sixty five dollars'}, list{66, 'sixty six dollars'}, list{67, 'sixty seven dollars'}, list{68, 'sixty eight dollars'}, list{69, 'sixty nine dollars'}, list{70, 'seventy dollars'}, list{71, 'seventy one dollars'}, list{72, 'seventy two dollars'}, list{73, 'seventy three dollars'}, list{74, 'seventy four dollars'}, list{75, 'seventy five dollars'}, list{76, 'seventy six dollars'}, list{77, 'seventy seven dollars'}, list{78, 'seventy eight dollars'}, list{79, 'seventy nine dollars'}, list{80, 'eigthty dollars'}, list{81, 'eigthty one dollars'}, list{82, 'eigthty two dollars'}, list{83, 'eigthty three dollars'}, list{84, 'eigthty four dollars'}, list{85, 'eigthty five dollars'}, list{86, 'eigthty six dollars'}, list{87, 'eigthty seven dollars'}, list{88, 'eigthty eight dollars'}, list{89, 'eigthty nine dollars'}, list{90, 'ninety dollars'}, list{91, 'ninety one dollars'}, list{92, 'ninety two dollars'}, list{93, 'ninety three dollars'}, list{94, 'ninety four dollars'}, list{95, 'ninety five dollars'}, list{96, 'ninety six dollars'}, list{97, 'ninety seven dollars'}, list{98, 'ninety eight dollars'}, list{99, 'ninety nine dollars'}, list{100, 'one hundred dollars'},...}
+     */
+    public static function provider(): array
     {
         return
         [
@@ -236,10 +242,8 @@ class EnglishWordNumberTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provider
-     */
-    public function testEnglishWords($input, $expected)
+    #[DataProvider('provider')]
+    public function testEnglishWords($input, $expected): void
     {
         $englishWords = new EnglishWordNumber();
         $this->assertEquals($expected, $englishWords->write($input));

@@ -4,16 +4,19 @@ namespace ByJG\WordNumber;
 
 class EnglishWordNumber extends Base
 {
+    #[\Override]
     public function concatWord(): string
     {
         return "and";
     }
 
+    #[\Override]
     public function currency(): array
     {
         return ["dollar", "dollars", "cent", "cents"];
     }
 
+    #[\Override]
     public function unit(): array
     {
         return [
@@ -29,6 +32,7 @@ class EnglishWordNumber extends Base
         ];
     }
 
+    #[\Override]
     public function elevenToNineteen(): array
     {
         return [
@@ -45,6 +49,7 @@ class EnglishWordNumber extends Base
         ];
     }
 
+    #[\Override]
     public function twentyToNinety(): array
     {
         return [
@@ -59,11 +64,13 @@ class EnglishWordNumber extends Base
         ];
     }
 
+    #[\Override]
     public function oneHundred(): string
     {
         return "one hundred";
     }
 
+    #[\Override]
     public function hundreds(): array
     {
         return [
@@ -79,6 +86,7 @@ class EnglishWordNumber extends Base
         ];
     }
 
+    #[\Override]
     public function tens(): array
     {
         return [

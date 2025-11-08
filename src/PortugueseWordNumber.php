@@ -4,16 +4,19 @@ namespace ByJG\WordNumber;
 
 class PortugueseWordNumber extends Base
 {
+    #[\Override]
     public function concatWord(): string
     {
         return "e";
     }
 
+    #[\Override]
     public function currency(): array
     {
         return ["real", "reais", "centavo", "centavos"];
     }
 
+    #[\Override]
     public function unit(): array
     {
         return [
@@ -29,6 +32,7 @@ class PortugueseWordNumber extends Base
         ];
     }
 
+    #[\Override]
     public function elevenToNineteen(): array
     {
         return [
@@ -45,6 +49,7 @@ class PortugueseWordNumber extends Base
         ];
     }
 
+    #[\Override]
     public function twentyToNinety(): array
     {
         return [
@@ -59,11 +64,13 @@ class PortugueseWordNumber extends Base
         ];
     }
 
+    #[\Override]
     public function oneHundred(): string
     {
         return "cem";
     }
 
+    #[\Override]
     public function hundreds(): array
     {
         return [
@@ -79,6 +86,7 @@ class PortugueseWordNumber extends Base
         ];
     }
 
+    #[\Override]
     public function tens(): array
     {
         return [

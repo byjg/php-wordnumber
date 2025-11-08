@@ -3,11 +3,17 @@
 namespace Tests;
 
 use ByJG\WordNumber\ItalianWordNumber;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class ItalianWordNumberTest extends TestCase
 {
-    public function provider()
+    /**
+     * @return (float|int|string)[][]
+     *
+     * @psalm-return list{list{0, 'zero euro'}, list{1, 'uno euro'}, list{2, 'due euro'}, list{3, 'tre euro'}, list{4, 'quattro euro'}, list{5, 'cinque euro'}, list{6, 'sei euro'}, list{7, 'sette euro'}, list{8, 'otto euro'}, list{9, 'nove euro'}, list{10, 'dieci euro'}, list{11, 'undici euro'}, list{12, 'dodici euro'}, list{13, 'tredici euro'}, list{14, 'quattordici euro'}, list{15, 'quindici euro'}, list{16, 'sedici euro'}, list{17, 'diciasette euro'}, list{18, 'diciotto euro'}, list{19, 'diciannove euro'}, list{20, 'venti euro'}, list{21, 'venti uno euro'}, list{22, 'venti due euro'}, list{23, 'venti tre euro'}, list{24, 'venti quattro euro'}, list{25, 'venti cinque euro'}, list{26, 'venti sei euro'}, list{27, 'venti sette euro'}, list{28, 'venti otto euro'}, list{29, 'venti nove euro'}, list{30, 'trenta euro'}, list{31, 'trenta uno euro'}, list{32, 'trenta due euro'}, list{33, 'trenta tre euro'}, list{34, 'trenta quattro euro'}, list{35, 'trenta cinque euro'}, list{36, 'trenta sei euro'}, list{37, 'trenta sette euro'}, list{38, 'trenta otto euro'}, list{39, 'trenta nove euro'}, list{40, 'quaranta euro'}, list{41, 'quaranta uno euro'}, list{42, 'quaranta due euro'}, list{43, 'quaranta tre euro'}, list{44, 'quaranta quattro euro'}, list{45, 'quaranta cinque euro'}, list{46, 'quaranta sei euro'}, list{47, 'quaranta sette euro'}, list{48, 'quaranta otto euro'}, list{49, 'quaranta nove euro'}, list{50, 'cinquanta euro'}, list{51, 'cinquanta uno euro'}, list{52, 'cinquanta due euro'}, list{53, 'cinquanta tre euro'}, list{54, 'cinquanta quattro euro'}, list{55, 'cinquanta cinque euro'}, list{56, 'cinquanta sei euro'}, list{57, 'cinquanta sette euro'}, list{58, 'cinquanta otto euro'}, list{59, 'cinquanta nove euro'}, list{60, 'sessanta euro'}, list{61, 'sessanta uno euro'}, list{62, 'sessanta due euro'}, list{63, 'sessanta tre euro'}, list{64, 'sessanta quattro euro'}, list{65, 'sessanta cinque euro'}, list{66, 'sessanta sei euro'}, list{67, 'sessanta sette euro'}, list{68, 'sessanta otto euro'}, list{69, 'sessanta nove euro'}, list{70, 'settanta euro'}, list{71, 'settanta uno euro'}, list{72, 'settanta due euro'}, list{73, 'settanta tre euro'}, list{74, 'settanta quattro euro'}, list{75, 'settanta cinque euro'}, list{76, 'settanta sei euro'}, list{77, 'settanta sette euro'}, list{78, 'settanta otto euro'}, list{79, 'settanta nove euro'}, list{80, 'ottanta euro'}, list{81, 'ottanta uno euro'}, list{82, 'ottanta due euro'}, list{83, 'ottanta tre euro'}, list{84, 'ottanta quattro euro'}, list{85, 'ottanta cinque euro'}, list{86, 'ottanta sei euro'}, list{87, 'ottanta sette euro'}, list{88, 'ottanta otto euro'}, list{89, 'ottanta nove euro'}, list{90, 'novanta euro'}, list{91, 'novanta uno euro'}, list{92, 'novanta due euro'}, list{93, 'novanta tre euro'}, list{94, 'novanta quattro euro'}, list{95, 'novanta cinque euro'}, list{96, 'novanta sei euro'}, list{97, 'novanta sette euro'}, list{98, 'novanta otto euro'}, list{99, 'novanta nove euro'}, list{100, 'cento euro'},...}
+     */
+    public static function provider(): array
     {
         return
         [
@@ -236,10 +242,8 @@ class ItalianWordNumberTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provider
-     */
-    public function testItalianWords($input, $expected)
+    #[DataProvider('provider')]
+    public function testItalianWords($input, $expected): void
     {
         $englishWords = new ItalianWordNumber();
         $this->assertEquals($expected, $englishWords->write($input));
