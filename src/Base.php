@@ -21,7 +21,7 @@ abstract class Base implements WordNumberInterface
         }
 
         $integer = intval($number);
-        $fration = round(($number - intval($number)) * 100, 0);
+        $fration = (int)round(($number - (float)$integer) * 100.0, 0);
         $part1 = $this->process($integer);
         $part2 = $this->process($fration);
 
@@ -47,7 +47,7 @@ abstract class Base implements WordNumberInterface
 
         $result = "";
 
-        $thousand = $number % 1000;
+        $thousand = (int)$number % 1000;
         $position = 0;
         $resultTens = "";
         $filledPosition = 0;
@@ -69,7 +69,7 @@ abstract class Base implements WordNumberInterface
             }
             $result = (($resultTens != "") ? $resultTens . " " . $thousandArray[$position][($thousand == 1) ? 1 : 2] . (!empty($resultTens) && !empty($result) ? $thousandArray[$filledPosition][0] : "") : "") . $result;
 
-            $number = intval($number / 1000);
+            $number = intval((int)$number / 1000);
             $thousand = $number % 1000;
             $filledPosition = ($resultTens != "") ? $position : $filledPosition;
             $position++;

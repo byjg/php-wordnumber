@@ -3,11 +3,17 @@
 namespace Tests;
 
 use ByJG\WordNumber\PortugueseWordNumber;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class PortugueseWordNumberTest extends TestCase
 {
-    public function provider()
+    /**
+     * @return (float|int|string)[][]
+     *
+     * @psalm-return list{list{0, 'zero reais'}, list{1, 'um real'}, list{2, 'dois reais'}, list{3, 'tres reais'}, list{4, 'quatro reais'}, list{5, 'cinco reais'}, list{6, 'seis reais'}, list{7, 'sete reais'}, list{8, 'oito reais'}, list{9, 'nove reais'}, list{10, 'dez reais'}, list{11, 'onze reais'}, list{12, 'doze reais'}, list{13, 'treze reais'}, list{14, 'quatorze reais'}, list{15, 'quinze reais'}, list{16, 'dezesseis reais'}, list{17, 'dezessete reais'}, list{18, 'dezoito reais'}, list{19, 'dezenove reais'}, list{20, 'vinte reais'}, list{21, 'vinte um reais'}, list{22, 'vinte dois reais'}, list{23, 'vinte tres reais'}, list{24, 'vinte quatro reais'}, list{25, 'vinte cinco reais'}, list{26, 'vinte seis reais'}, list{27, 'vinte sete reais'}, list{28, 'vinte oito reais'}, list{29, 'vinte nove reais'}, list{30, 'trinta reais'}, list{31, 'trinta um reais'}, list{32, 'trinta dois reais'}, list{33, 'trinta tres reais'}, list{34, 'trinta quatro reais'}, list{35, 'trinta cinco reais'}, list{36, 'trinta seis reais'}, list{37, 'trinta sete reais'}, list{38, 'trinta oito reais'}, list{39, 'trinta nove reais'}, list{40, 'quarenta reais'}, list{41, 'quarenta um reais'}, list{42, 'quarenta dois reais'}, list{43, 'quarenta tres reais'}, list{44, 'quarenta quatro reais'}, list{45, 'quarenta cinco reais'}, list{46, 'quarenta seis reais'}, list{47, 'quarenta sete reais'}, list{48, 'quarenta oito reais'}, list{49, 'quarenta nove reais'}, list{50, 'cinquenta reais'}, list{51, 'cinquenta um reais'}, list{52, 'cinquenta dois reais'}, list{53, 'cinquenta tres reais'}, list{54, 'cinquenta quatro reais'}, list{55, 'cinquenta cinco reais'}, list{56, 'cinquenta seis reais'}, list{57, 'cinquenta sete reais'}, list{58, 'cinquenta oito reais'}, list{59, 'cinquenta nove reais'}, list{60, 'sessenta reais'}, list{61, 'sessenta um reais'}, list{62, 'sessenta dois reais'}, list{63, 'sessenta tres reais'}, list{64, 'sessenta quatro reais'}, list{65, 'sessenta cinco reais'}, list{66, 'sessenta seis reais'}, list{67, 'sessenta sete reais'}, list{68, 'sessenta oito reais'}, list{69, 'sessenta nove reais'}, list{70, 'setenta reais'}, list{71, 'setenta um reais'}, list{72, 'setenta dois reais'}, list{73, 'setenta tres reais'}, list{74, 'setenta quatro reais'}, list{75, 'setenta cinco reais'}, list{76, 'setenta seis reais'}, list{77, 'setenta sete reais'}, list{78, 'setenta oito reais'}, list{79, 'setenta nove reais'}, list{80, 'oitenta reais'}, list{81, 'oitenta um reais'}, list{82, 'oitenta dois reais'}, list{83, 'oitenta tres reais'}, list{84, 'oitenta quatro reais'}, list{85, 'oitenta cinco reais'}, list{86, 'oitenta seis reais'}, list{87, 'oitenta sete reais'}, list{88, 'oitenta oito reais'}, list{89, 'oitenta nove reais'}, list{90, 'noventa reais'}, list{91, 'noventa um reais'}, list{92, 'noventa dois reais'}, list{93, 'noventa tres reais'}, list{94, 'noventa quatro reais'}, list{95, 'noventa cinco reais'}, list{96, 'noventa seis reais'}, list{97, 'noventa sete reais'}, list{98, 'noventa oito reais'}, list{99, 'noventa nove reais'}, list{100, 'cem reais'},...}
+     */
+    public static function provider(): array
     {
         return
         [
@@ -236,10 +242,8 @@ class PortugueseWordNumberTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provider
-     */
-    public function testPortugueseWords($input, $expected)
+    #[DataProvider('provider')]
+    public function testPortugueseWords($input, $expected): void
     {
         $englishWords = new PortugueseWordNumber();
         $this->assertEquals($expected, $englishWords->write($input));
