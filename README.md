@@ -1,4 +1,10 @@
+---
+tags: [php, text-manipulation]
+---
+
 # WordNumber
+
+Convert numeric values into their word representations in multiple languages.
 
 [![Sponsor](https://img.shields.io/badge/Sponsor-%23ea4aaa?logo=githubsponsors&logoColor=white&labelColor=0d1117)](https://github.com/sponsors/byjg)
 [![Build Status](https://github.com/byjg/php-wordnumber/actions/workflows/phpunit.yml/badge.svg?branch=master)](https://github.com/byjg/php-wordnumber/actions/workflows/phpunit.yml)
@@ -6,8 +12,6 @@
 [![GitHub source](https://img.shields.io/badge/Github-source-informational?logo=github)](https://github.com/byjg/php-wordnumber/)
 [![GitHub license](https://img.shields.io/github/license/byjg/php-wordnumber.svg)](https://opensource.byjg.com/opensource/licensing.html)
 [![GitHub release](https://img.shields.io/github/release/byjg/php-wordnumber.svg)](https://github.com/byjg/php-wordnumber/releases/)
-
-Convert numeric values into their word representations in multiple languages.
 
 ## Features
 
@@ -59,9 +63,9 @@ echo $wordNumber->write(12.34);
 
 ## Documentation
 
-- [Getting Started](docs/getting-started.md)
-- [Usage Examples](docs/usage.md)
-- [Creating Custom Languages](docs/creating-languages.md)
+- [Getting Started](getting-started)
+- [Usage Examples](usage)
+- [Creating Custom Languages](creating-languages)
 
 ## Dependencies
 
