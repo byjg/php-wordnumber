@@ -11,7 +11,7 @@ Convert numeric values into their word representations in multiple languages.
 [![Build Status](https://github.com/byjg/php-wordnumber/actions/workflows/phpunit.yml/badge.svg?branch=master)](https://github.com/byjg/php-wordnumber/actions/workflows/phpunit.yml)
 [![Opensource ByJG](https://img.shields.io/badge/opensource-byjg-success.svg)](http://opensource.byjg.com)
 [![GitHub source](https://img.shields.io/badge/Github-source-informational?logo=github)](https://github.com/byjg/php-wordnumber/)
-[![GitHub license](https://img.shields.io/github/license/byjg/php-wordnumber.svg)](https://opensource.byjg.com/opensource/licensing.html)
+[![GitHub license](https://img.shields.io/github/license/byjg/php-wordnumber.svg)](https://opensource.byjg.com/license/)
 [![GitHub release](https://img.shields.io/github/release/byjg/php-wordnumber.svg)](https://github.com/byjg/php-wordnumber/releases/)
 
 ## Features
@@ -67,13 +67,6 @@ echo $wordNumber->write(12.34);
 - [Getting Started](docs/getting-started.md)
 - [Usage Examples](docs/usage.md)
 - [Creating Custom Languages](docs/creating-languages.md)
-
-## Dependencies
-
-```mermaid
-flowchart TD
-    byjg/wordnumber
-```
 
 ----
 [Open source ByJG](http://opensource.byjg.com)
