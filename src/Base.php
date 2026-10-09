@@ -2,79 +2,86 @@
 
 namespace ByJG\WordNumber;
 
+use InvalidArgumentException;
+
 abstract class Base implements WordNumberInterface
 {
+    /**
+     * One quadrillion: every language names its groups up to the trillions.
+     */
+    public const int LIMIT = 1_000_000_000_000_000;
 
     /**
-     * Write a currency Word number.
-     * This params receives an integer that represents two decimal points.
+     * The currency names: [singular major, plural major, singular minor, plural minor].
      *
-     * @param float $number
-     * @return string
+     * @return array{string, string, string, string}
      */
+    abstract protected function currency(): array;
+
+    /**
+     * The word joining the major and the minor amounts ("and" in "one dollar and one cent").
+     */
+    abstract protected function concatWord(): string;
+
+    abstract protected function zero(): string;
+
+    /**
+     * Write a positive integer in words, following the grammar of the language.
+     */
+    abstract protected function integerToWords(int $number): string;
+
+    #[\Override]
     public function write(float $number): string
     {
-        $currency = $this->currency();
-
-        if (intval($number) === 0) {
-            return "zero " . $currency[1];
+        if ($number < 0 || $number >= self::LIMIT) {
+            throw new InvalidArgumentException("The number must be between 0 and " . number_format(self::LIMIT) . " (exclusive)");
         }
 
-        $integer = intval($number);
-        $fration = (int)round(($number - (float)$integer) * 100.0, 0);
-        $part1 = $this->process($integer);
-        $part2 = $this->process($fration);
+        $cents = (int)round($number * 100.0);
+        [$one, $many, $oneMinor, $manyMinor] = $this->currency();
 
-        $result = $part1;
-        if (!empty($part1)) {
-            $result .= ($integer == 1 ? $currency[0] : $currency[1]);
-        }
-        if (!empty($part2)) {
-            $result .= " " . $this->concatWord() . " " . $part2 . ($fration == 1 ? $currency[2] : $currency[3]);
+        if ($cents === 0) {
+            return $this->zero() . " " . $many;
         }
 
-        return $result;
+        $integer = intdiv($cents, 100);
+        $fraction = $cents % 100;
+
+        $parts = [];
+        if ($integer > 0) {
+            $parts[] = $this->amount($integer, $one, $many);
+        }
+        if ($fraction > 0) {
+            $parts[] = $this->amount($fraction, $oneMinor, $manyMinor);
+        }
+
+        return implode(" " . $this->concatWord() . " ", $parts);
     }
 
-    protected function process(float $number): string
+    /**
+     * Write a quantity followed by the currency name. Override when the language changes the
+     * number before a noun ("un euro") or links them ("um milhão de reais").
+     */
+    protected function amount(int $number, string $one, string $many): string
     {
-        $thousandArray = $this->tens();
+        return $this->integerToWords($number) . " " . ($number === 1 ? $one : $many);
+    }
 
-        $numbersArray = [];
-        $numbersArray[0] = array_merge([""], $this->unit());
-        $numbersArray[1] = array_merge([""], [$this->elevenToNineteen()], $this->twentyToNinety());
-        $numbersArray[2] = array_merge([""], $this->hundreds());
-
-        $result = "";
-
-        $thousand = (int)$number % 1000;
-        $position = 0;
-        $resultTens = "";
-        $filledPosition = 0;
-        while ($number > 0) {
-            $unit = $thousand % 10;
-            $ten = intval(($thousand % 100) / 10);
-            $hundred = intval(($thousand % 1000) / 100);
-
-            if ($thousand == 100) {
-                $resultTens = $this->oneHundred();
-            } else {
-                if ($ten == 1) {
-                    $resultTens = $numbersArray[1][1][$unit];
-                } else {
-                    $resultTens = $numbersArray[0][$unit];
-                    $resultTens = trim($numbersArray[1][$ten] . ($resultTens != "" ? " " : "") . $resultTens);
-                }
-                $resultTens = $numbersArray[2][$hundred] . (($resultTens != "") && ($numbersArray[2][$hundred] != "") ? " " . $this->concatWord() . " " : "") . $resultTens;
+    /**
+     * Split a number into its non-zero groups of three digits, highest first.
+     *
+     * @return list<array{int, int}> pairs of [group value, scale], where scale 0 is units,
+     *                               1 thousands, 2 millions and so on
+     */
+    protected function groups(int $number): array
+    {
+        $groups = [];
+        for ($scale = 0; $number > 0; $scale++, $number = intdiv($number, 1000)) {
+            if ($number % 1000 > 0) {
+                array_unshift($groups, [$number % 1000, $scale]);
             }
-            $result = (($resultTens != "") ? $resultTens . " " . $thousandArray[$position][($thousand == 1) ? 1 : 2] . (!empty($resultTens) && !empty($result) ? $thousandArray[$filledPosition][0] : "") : "") . $result;
-
-            $number = intval((int)$number / 1000);
-            $thousand = $number % 1000;
-            $filledPosition = ($resultTens != "") ? $position : $filledPosition;
-            $position++;
         }
 
-        return $result;
+        return $groups;
     }
 }
