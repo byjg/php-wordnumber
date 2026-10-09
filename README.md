@@ -9,7 +9,8 @@ Convert numeric values into their word representations in multiple languages.
 
 [![Sponsor](https://img.shields.io/badge/Sponsor-%23ea4aaa?logo=githubsponsors&logoColor=white&labelColor=0d1117)](https://github.com/sponsors/byjg)
 [![Build Status](https://github.com/byjg/php-wordnumber/actions/workflows/phpunit.yml/badge.svg?branch=master)](https://github.com/byjg/php-wordnumber/actions/workflows/phpunit.yml)
-[![Opensource ByJG](https://img.shields.io/badge/opensource-byjg-success.svg)](http://opensource.byjg.com)
+[![Opensource ByJG](https://img.shields.io/badge/opensource-byjg-success.svg)](https://opensource.byjg.com)
+[![Install MCP Server](https://img.shields.io/badge/Install-MCP_Server-8A2BE2?logo=modelcontextprotocol&logoColor=white)](https://opensource.byjg.com/docs/ai/mcpserver-byjg-docs/)
 [![GitHub source](https://img.shields.io/badge/Github-source-informational?logo=github)](https://github.com/byjg/php-wordnumber/)
 [![GitHub license](https://img.shields.io/github/license/byjg/php-wordnumber.svg)](https://opensource.byjg.com/license/)
 [![GitHub release](https://img.shields.io/github/release/byjg/php-wordnumber.svg)](https://github.com/byjg/php-wordnumber/releases/)
@@ -22,6 +23,7 @@ Convert numeric values into their word representations in multiple languages.
   - Portuguese
   - Italian (Thanks to [willypuzzle](https://github.com/willypuzzle))
 - Currency formatting with singular/plural forms
+- Grammar-aware output for each language (e.g. "twenty-one", "mil e um", "ventuno")
 - Extensible architecture for adding new languages
 
 ## Installation
@@ -39,7 +41,7 @@ use ByJG\WordNumber\EnglishWordNumber;
 
 $wordNumber = new EnglishWordNumber();
 echo $wordNumber->write(12.34);
-// Output: twelve dollars and thirty four cents
+// Output: twelve dollars and thirty-four cents
 ```
 
 ### Portuguese
@@ -59,7 +61,7 @@ use ByJG\WordNumber\ItalianWordNumber;
 
 $wordNumber = new ItalianWordNumber();
 echo $wordNumber->write(12.34);
-// Output: dodici euro e trenta quattro centesimi
+// Output: dodici euro e trentaquattro centesimi
 ```
 
 ## Documentation
@@ -68,5 +70,11 @@ echo $wordNumber->write(12.34);
 - [Usage Examples](docs/usage.md)
 - [Creating Custom Languages](docs/creating-languages.md)
 
+## Running Tests
+
+```bash
+vendor/bin/phpunit
+```
+
 ----
-[Open source ByJG](http://opensource.byjg.com)
+[Open source ByJG](https://opensource.byjg.com)
