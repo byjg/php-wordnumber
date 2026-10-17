@@ -18,9 +18,9 @@
   Applications that store or compare the written text must expect the new forms.
 - **`WordNumberInterface` now declares only `write(float $number): string`.** The table methods
   (`unit()`, `elevenToNineteen()`, `twentyToNinety()`, `hundreds()`, `oneHundred()`, `tens()`) are
-  gone, and `currency()` and `concatWord()` are now protected methods of `Base`. A custom language
-  extends `Base` and implements `currency()`, `concatWord()`, `zero()` and
-  `integerToWords(int $number)`; see `docs/creating-languages.md`.
+  gone, as is the protected `Base::process()`, and `currency()` and `concatWord()` are now
+  protected methods of `Base`. A custom language extends `Base` and implements `currency()`,
+  `concatWord()`, `zero()` and `integerToWords(int $number)`; see `docs/creating-languages.md`.
 - **`write()` throws `InvalidArgumentException`** for a negative number or one at or above
   `Base::LIMIT` (one quadrillion). Before, a negative number returned an empty string and a larger
   one failed with an undefined array offset.
