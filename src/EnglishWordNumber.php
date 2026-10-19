@@ -2,99 +2,85 @@
 
 namespace ByJG\WordNumber;
 
+/**
+ * English, British style: "and" before the tens and units ("one hundred and one",
+ * "one thousand and one"), and a hyphen inside compound tens ("twenty-one").
+ */
 class EnglishWordNumber extends Base
 {
-    #[\Override]
-    public function concatWord(): string
-    {
-        return "and";
-    }
+    /** @var array<int, string> */
+    private static array $ones = [
+        "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+        "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
+    ];
+
+    /** @var array<int, string> */
+    private static array $tens = [
+        "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety",
+    ];
+
+    /** @var array<int, string> */
+    private static array $scales = ["", "thousand", "million", "billion", "trillion"];
 
     #[\Override]
-    public function currency(): array
+    protected function currency(): array
     {
         return ["dollar", "dollars", "cent", "cents"];
     }
 
     #[\Override]
-    public function unit(): array
+    protected function concatWord(): string
     {
-        return [
-            "one",
-            "two",
-            "three",
-            "four",
-            "five",
-            "six",
-            "seven",
-            "eight",
-            "nine",
-        ];
+        return "and";
     }
 
     #[\Override]
-    public function elevenToNineteen(): array
+    protected function zero(): string
     {
-        return [
-            "ten",
-            "eleven",
-            "twelve",
-            "thirteen",
-            "fourteen",
-            "fifteen",
-            "sixteen",
-            "seventeen",
-            "eighteen",
-            "nineteen",
-        ];
+        return "zero";
     }
 
     #[\Override]
-    public function twentyToNinety(): array
+    protected function integerToWords(int $number): string
     {
-        return [
-            "twenty",
-            "thirty",
-            "fourty",
-            "fifty",
-            "sixty",
-            "seventy",
-            "eigthty",
-            "ninety",
-        ];
+        $groups = $this->groups($number);
+        $last = count($groups) - 1;
+
+        $words = [];
+        foreach ($groups as $i => [$group, $scale]) {
+            $text = $this->belowThousand($group);
+            if ($i > 0 && $i === $last && $scale === 0 && $group < 100) {
+                $text = "and " . $text;
+            }
+            $words[] = trim($text . " " . self::$scales[$scale]);
+        }
+
+        return implode(" ", $words);
     }
 
-    #[\Override]
-    public function oneHundred(): string
+    private function belowThousand(int $number): string
     {
-        return "one hundred";
+        $hundreds = intdiv($number, 100);
+        $rest = $number % 100;
+
+        $words = [];
+        if ($hundreds > 0) {
+            $words[] = self::$ones[$hundreds] . " hundred";
+        }
+        if ($rest > 0) {
+            $words[] = ($hundreds > 0 ? "and " : "") . $this->belowHundred($rest);
+        }
+
+        return implode(" ", $words);
     }
 
-    #[\Override]
-    public function hundreds(): array
+    private function belowHundred(int $number): string
     {
-        return [
-            "one hundred",
-            "two hundred",
-            "three hundred",
-            "four hundred",
-            "five hundred",
-            "six hundred",
-            "seven hundred",
-            "eigth hundred",
-            "nine hundred",
-        ];
-    }
+        if ($number < 20) {
+            return self::$ones[$number];
+        }
 
-    #[\Override]
-    public function tens(): array
-    {
-        return [
-            [" and ", "", ""],
-            [", ", "thousand", "thousands"],
-            [", ", "milion", "milions"],
-            [", ", "bilion", "bilions"],
-            [", ", "trilion", "trilions"],
-        ];
+        $unit = $number % 10;
+        return self::$tens[intdiv($number, 10)] . ($unit > 0 ? "-" . self::$ones[$unit] : "");
     }
 }

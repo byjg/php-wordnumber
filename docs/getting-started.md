@@ -26,7 +26,7 @@ use ByJG\WordNumber\EnglishWordNumber;
 
 $wordNumber = new EnglishWordNumber();
 echo $wordNumber->write(12.34);
-// Output: twelve dollars and thirty four cents
+// Output: twelve dollars and thirty-four cents
 ```
 
 ### Portuguese
@@ -48,7 +48,7 @@ use ByJG\WordNumber\ItalianWordNumber;
 
 $wordNumber = new ItalianWordNumber();
 echo $wordNumber->write(12.34);
-// Output: dodici euro e trenta quattro centesimi
+// Output: dodici euro e trentaquattro centesimi
 ```
 
 ## Supported Languages
