@@ -5,7 +5,7 @@ tags: [php, text-manipulation]
 
 # WordNumber
 
-Convert numeric values into their word representations in multiple languages.
+Write numbers and money amounts in words, with each language's grammar: English, Portuguese and Italian.
 
 [![Sponsor](https://img.shields.io/badge/Sponsor-%23ea4aaa?logo=githubsponsors&logoColor=white&labelColor=0d1117)](https://github.com/sponsors/byjg)
 [![Build Status](https://github.com/byjg/php-wordnumber/actions/workflows/phpunit.yml/badge.svg?branch=master)](https://github.com/byjg/php-wordnumber/actions/workflows/phpunit.yml)
@@ -14,6 +14,19 @@ Convert numeric values into their word representations in multiple languages.
 [![GitHub source](https://img.shields.io/badge/Github-source-informational?logo=github)](https://github.com/byjg/php-wordnumber/)
 [![GitHub license](https://img.shields.io/github/license/byjg/php-wordnumber.svg)](https://opensource.byjg.com/license/)
 [![GitHub release](https://img.shields.io/github/release/byjg/php-wordnumber.svg)](https://github.com/byjg/php-wordnumber/releases/)
+
+## Why
+
+Cheques, contracts, invoices and receipts often need the amount in words. Each language has
+its own rules ("twenty-one", "vinte e um", "ventuno"; "mil e um", not "um mil e um"), and the
+currency changes between singular and plural.
+
+```php
+(new EnglishWordNumber())->write(12.34);      // twelve dollars and thirty-four cents
+(new PortugueseWordNumber())->write(12.34);   // doze reais e trinta e quatro centavos
+```
+
+A new language is a new class.
 
 ## Features
 
